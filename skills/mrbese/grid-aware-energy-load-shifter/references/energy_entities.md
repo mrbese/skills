@@ -104,6 +104,16 @@ These are the entities you control to shift loads:
 
 ---
 
+## HVAC & Water Heater Entities
+
+| Pattern | Example Entity | Key Attributes |
+|---|---|---|
+| HVAC | `climate.thermostat`, `climate.heat_pump` | `hvac_mode`, `temperature`, `current_temperature` |
+| Water heater | `switch.water_heater`, `water_heater.tank` | `current_temperature`, `target_temp_high` |
+| HVAC power | `sensor.hvac_power`, `sensor.heat_pump_energy` | `device_class: power`, unit `W` or `kW` |
+
+---
+
 ## Common HA Services for Load Control
 
 ```
@@ -111,6 +121,24 @@ switch.turn_on       {"entity_id": "switch.ev_charger"}
 switch.turn_off      {"entity_id": "switch.pool_pump"}
 automation.trigger    {"entity_id": "automation.offpeak_dishwasher"}
 script.turn_on       {"entity_id": "script.delayed_charge"}
+climate.set_temperature  {"entity_id": "climate.thermostat", "temperature": 68}
 homeassistant.turn_on  {"entity_id": "switch.dryer"}   # generic, works on any domain
 homeassistant.turn_off {"entity_id": "switch.dryer"}
 ```
+
+---
+
+## Supported Integrations
+
+| Integration | Price Entity Pattern | Forecast Available |
+|---|---|---|
+| Nordpool | `sensor.nordpool_*` | today + tomorrow arrays |
+| ENTSO-e | `sensor.entsoe_*` | today + tomorrow arrays |
+| Tibber | `sensor.tibber_*` | price_level attribute |
+| Octopus Energy | `sensor.octopus_*` | current + upcoming rates |
+| Amber Electric | `sensor.amber_*` | real-time 5-min pricing |
+| Solcast | `sensor.solcast_*` | solar forecast |
+| Forecast.Solar | `sensor.forecast_solar_*` | solar forecast |
+| Tesla Powerwall | `sensor.powerwall_*` | battery SOC + grid status |
+| Enphase | `sensor.enphase_*` | battery + solar + grid |
+| Pila Energy | (upcoming) | mesh battery fleet |
