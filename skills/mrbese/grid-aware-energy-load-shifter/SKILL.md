@@ -60,6 +60,24 @@ Two paths to reach Home Assistant:
 1. **MCP (preferred):** If the HA MCP server is configured, use `mcporter call homeassistant.<tool>` directly.
 2. **REST API:** Use `python3 {baseDir}/scripts/ha_bridge.py`. Requires `HA_URL` and `HA_TOKEN` environment variables.
 
+## Security
+
+**Required credentials:**
+
+| Variable | Description |
+|---|---|
+| `HA_URL` | Home Assistant base URL (e.g. `http://homeassistant.local:8123`) |
+| `HA_TOKEN` | Home Assistant Long-Lived Access Token |
+
+**Least-privilege recommendations:**
+
+- Create a dedicated Home Assistant user account for this skill (e.g. `openclaw-energy`)
+- Generate a Long-Lived Access Token from that account only
+- Limit the account's entity access to energy-related entities if your HA setup supports entity-level permissions
+- Test with read-only commands first (`discover`, `energy-summary`) before enabling device control
+
+**Domain allowlist:** The `call-service` command restricts actions to energy-related domains only: `switch`, `automation`, `script`, `climate`, `water_heater`, `input_boolean`, `input_number`, `number`. All other domains (e.g. `lock`, `alarm_control_panel`) are blocked with exit code 2.
+
 ## Commands
 
 | Command | What it does | Example |
