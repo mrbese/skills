@@ -109,8 +109,8 @@ If solar sensors exist, align loads with peak production:
 HVAC is the largest residential load (40-50% of electricity). Pre-cool or pre-heat during cheap/solar hours so the home coasts through expensive peak periods:
 
 1. Read `climate.*` entities for current HVAC mode and setpoint
-2. During cheapest window: lower cooling setpoint by 2-3°F (pre-cool) or raise heating setpoint by 2-3°F (pre-heat)
-3. During peak window: raise cooling setpoint by 2-3°F to coast on thermal mass
+2. During cheapest window: lower cooling setpoint by 2-3F (pre-cool) or raise heating setpoint by 2-3F (pre-heat)
+3. During peak window: raise cooling setpoint by 2-3F to coast on thermal mass
 4. Savings estimate: 1.5-3 kW shifted × price differential × hours
 
 ## Water Heater Scheduling

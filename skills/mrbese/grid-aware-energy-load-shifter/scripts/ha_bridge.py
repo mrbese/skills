@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ha_bridge.py — Home Assistant REST API bridge for OpenClaw.
+ha_bridge.py - Home Assistant REST API bridge for OpenClaw.
 
 A lightweight CLI that lets the OpenClaw agent read energy data and call
 services on a local Home Assistant instance. Zero external dependencies;
@@ -42,7 +42,7 @@ from datetime import datetime, timedelta, timezone
 
 def _load_dotenv(path: str) -> None:
     """
-    Minimal .env loader — reads KEY=VALUE lines into os.environ.
+    Minimal .env loader - reads KEY=VALUE lines into os.environ.
     Skips comments (#) and blank lines. No pip dependency needed.
     """
     if not os.path.isfile(path):
@@ -263,7 +263,7 @@ def get_entity_history(entity_id: str, hours: float, config: dict) -> list:
     endpoint = f"/api/history/period/{ts}?filter_entity_id={entity_id}&minimal_response&no_attributes"
     result = ha_request("GET", endpoint, config)
 
-    # API returns [[state1, state2, ...]] — a list of lists grouped by entity
+    # API returns [[state1, state2, ...]] - a list of lists grouped by entity
     if result and isinstance(result, list) and len(result) > 0:
         return result[0]
     return []
@@ -408,6 +408,7 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main():
+    """CLI entry point."""
     parser = build_parser()
     args = parser.parse_args()
     config = load_config()
