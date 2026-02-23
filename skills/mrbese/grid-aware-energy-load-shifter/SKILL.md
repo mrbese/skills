@@ -14,6 +14,13 @@ description: >
 metadata:
   openclaw:
     emoji: "⚡"
+    env_vars:
+      - name: HA_URL
+        description: Home Assistant base URL (e.g. http://homeassistant.local:8123)
+        required: true
+      - name: HA_TOKEN
+        description: Home Assistant Long-Lived Access Token
+        required: true
     tags:
       - energy
       - home-assistant
@@ -60,7 +67,7 @@ Two paths to reach Home Assistant:
 | `discover` | List all energy entities | `ha_bridge.py discover` |
 | `energy-summary` | One-shot dashboard (prices + consumption + solar + storage) | `ha_bridge.py energy-summary` |
 | `status <entity>` | Read a single entity's state and attributes | `ha_bridge.py status sensor.electricity_price` |
-| `call-service <d/s>` | Call any HA service | `ha_bridge.py call-service switch/turn_on --entity-id switch.ev_charger` |
+| `call-service <d/s>` | Call an energy-related HA service (restricted to allowed domains) | `ha_bridge.py call-service switch/turn_on --entity-id switch.ev_charger` |
 | `history <entity>` | Get state changes over last N hours | `ha_bridge.py history sensor.grid_import --hours 24` |
 
 All commands output JSON to stdout.
