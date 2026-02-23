@@ -83,8 +83,7 @@ def load_config() -> dict:
     if errors:
         _error(
             "Configuration error: " + "; ".join(errors) + ". "
-            "Set these environment variables or create a .env file. "
-            "See .env.example for details.",
+            "Set these environment variables or create a .env file.",
             exit_code=2,
         )
 

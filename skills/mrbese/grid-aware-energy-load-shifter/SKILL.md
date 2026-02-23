@@ -58,7 +58,7 @@ python3 {baseDir}/scripts/ha_bridge.py call-service switch/turn_on --entity-id s
 Two paths to reach Home Assistant:
 
 1. **MCP (preferred):** If the HA MCP server is configured, use `mcporter call homeassistant.<tool>` directly.
-2. **REST API:** Use `python3 {baseDir}/scripts/ha_bridge.py`. Requires `HA_URL` and `HA_TOKEN` environment variables (see [.env.example](.env.example)).
+2. **REST API:** Use `python3 {baseDir}/scripts/ha_bridge.py`. Requires `HA_URL` and `HA_TOKEN` environment variables.
 
 ## Commands
 

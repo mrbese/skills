@@ -21,7 +21,6 @@ An OpenClaw skill that bridges Home Assistant's energy management data to an aut
 | `SKILL.md` | Agent-facing instructions with load-shifting workflow, price interpretation, and DER optimization strategies |
 | `scripts/ha_bridge.py` | REST API bridge - 5 CLI commands, zero pip dependencies, Python stdlib only |
 | `references/energy_entities.md` | Comprehensive entity reference for 7+ energy pricing providers and all HA energy entity patterns |
-| `.env.example` | Configuration template for HA REST API mode |
 
 ## Quick Start
 
