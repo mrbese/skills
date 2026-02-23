@@ -14,13 +14,10 @@ description: >
 metadata:
   openclaw:
     emoji: "⚡"
-    env_vars:
-      - name: HA_URL
-        description: Home Assistant base URL (e.g. http://homeassistant.local:8123)
-        required: true
-      - name: HA_TOKEN
-        description: Home Assistant Long-Lived Access Token
-        required: true
+    requires:
+      env:
+        - HA_URL
+        - HA_TOKEN
     tags:
       - energy
       - home-assistant

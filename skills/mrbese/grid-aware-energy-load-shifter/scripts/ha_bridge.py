@@ -40,37 +40,12 @@ from datetime import datetime, timedelta, timezone
 # ---------------------------------------------------------------------------
 
 
-def _load_dotenv(path: str) -> None:
-    """
-    Minimal .env loader - reads KEY=VALUE lines into os.environ.
-    Skips comments (#) and blank lines. No pip dependency needed.
-    """
-    if not os.path.isfile(path):
-        return
-    with open(path) as fh:
-        for line in fh:
-            line = line.strip()
-            if not line or line.startswith("#"):
-                continue
-            if "=" in line:
-                key, _, value = line.partition("=")
-                key = key.strip()
-                value = value.strip().strip("\"'")
-                os.environ.setdefault(key, value)
-
-
 def load_config() -> dict:
     """
     Read HA_URL and HA_TOKEN from the environment.
 
-    Looks for a .env file next to this script first, then falls back to
-    the process environment. Returns a config dict or exits with code 2.
+    Returns a config dict or exits with code 2 if not set.
     """
-    # Try loading .env from the skill directory (parent of scripts/)
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    skill_dir = os.path.dirname(script_dir)
-    _load_dotenv(os.path.join(skill_dir, ".env"))
-
     ha_url = os.environ.get("HA_URL", "").rstrip("/")
     ha_token = os.environ.get("HA_TOKEN", "")
 
@@ -83,7 +58,7 @@ def load_config() -> dict:
     if errors:
         _error(
             "Configuration error: " + "; ".join(errors) + ". "
-            "Set these environment variables or create a .env file.",
+            "Set these environment variables.",
             exit_code=2,
         )
 
