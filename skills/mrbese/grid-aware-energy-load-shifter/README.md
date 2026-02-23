@@ -1,6 +1,6 @@
 # Grid-Aware Energy Load Shifter
 
-An OpenClaw skill that bridges Home Assistant's energy management data to an autonomous AI agent. Reads real-time electricity prices, solar production forecasts, battery state of charge, and consumption data from Home Assistant. Schedules deferrable household loads — EV charging, HVAC pre-conditioning, pool pumps, water heaters, dishwashers, and laundry — to the cheapest rate windows, optimizing solar self-consumption and supporting demand response / virtual power plant (VPP) signals.
+An OpenClaw skill that bridges Home Assistant's energy management data to an autonomous AI agent. Reads real-time electricity prices, solar production forecasts, battery state of charge, and consumption data from Home Assistant. Schedules deferrable household loads - EV charging, HVAC pre-conditioning, pool pumps, water heaters, dishwashers, and laundry - to the cheapest rate windows, optimizing solar self-consumption and supporting demand response / virtual power plant (VPP) signals.
 
 ## What This Skill Does
 
@@ -19,7 +19,7 @@ An OpenClaw skill that bridges Home Assistant's energy management data to an aut
 | File | Purpose |
 |---|---|
 | `SKILL.md` | Agent-facing instructions with load-shifting workflow, price interpretation, and DER optimization strategies |
-| `scripts/ha_bridge.py` | REST API bridge — 5 CLI commands, zero pip dependencies, Python stdlib only |
+| `scripts/ha_bridge.py` | REST API bridge - 5 CLI commands, zero pip dependencies, Python stdlib only |
 | `references/energy_entities.md` | Comprehensive entity reference for 7+ energy pricing providers and all HA energy entity patterns |
 | `.env.example` | Configuration template for HA REST API mode |
 
@@ -42,11 +42,11 @@ python3 scripts/ha_bridge.py call-service switch/turn_on --entity-id switch.ev_c
 
 ## Technical Design
 
-- **Zero external dependencies** — uses only Python standard library (`urllib`, `json`, `argparse`)
-- **Universal compatibility** — no hardcoded rate schedules; reads whatever pricing entities HA provides
-- **Dual connectivity** — works via HA MCP server or REST API fallback
-- **JSON output** — all commands emit structured JSON for agent parsing
-- **Exit codes** — `0` success, `1` API error, `2` configuration error
+- **Zero external dependencies** - uses only Python standard library (`urllib`, `json`, `argparse`)
+- **Universal compatibility** - no hardcoded rate schedules; reads whatever pricing entities HA provides
+- **Dual connectivity** - works via HA MCP server or REST API fallback
+- **JSON output** - all commands emit structured JSON for agent parsing
+- **Exit codes** - `0` success, `1` API error, `2` configuration error
 
 ## Keywords
 
