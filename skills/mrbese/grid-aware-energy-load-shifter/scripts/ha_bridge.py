@@ -274,9 +274,23 @@ def get_entity_history(entity_id: str, hours: float, config: dict) -> list:
 # ---------------------------------------------------------------------------
 
 
+# Service domains allowed for call-service. Restricted to energy-related
+# domains to prevent misuse (e.g. lock/unlock, alarm_control_panel).
+ALLOWED_SERVICE_DOMAINS = {
+    "switch",          # Toggle devices (EV charger, pool pump, water heater)
+    "automation",      # Trigger energy automations
+    "script",          # Run energy management scripts
+    "climate",         # HVAC pre-conditioning setpoints
+    "water_heater",    # Water heater scheduling
+    "input_boolean",   # Toggle helper entities
+    "input_number",    # Set numeric helpers (e.g. setpoint overrides)
+    "number",          # Device number controls (e.g. charge current limit)
+}
+
+
 def call_service(domain: str, service: str, data: dict, config: dict) -> dict:
     """
-    Call a Home Assistant service.
+    Call a Home Assistant service (energy-related domains only).
 
     Args:
         domain:  Service domain (e.g. "switch", "automation", "script")
@@ -288,7 +302,16 @@ def call_service(domain: str, service: str, data: dict, config: dict) -> dict:
         call_service("switch", "turn_on", {"entity_id": "switch.ev_charger"}, cfg)
 
     Returns the API response (list of affected states).
+
+    Raises SystemExit (code 2) if the domain is not in the allowlist.
     """
+    if domain not in ALLOWED_SERVICE_DOMAINS:
+        _error(
+            f"Domain '{domain}' is not allowed. "
+            f"Permitted domains: {', '.join(sorted(ALLOWED_SERVICE_DOMAINS))}. "
+            "This skill is restricted to energy-related services.",
+            exit_code=2,
+        )
     endpoint = f"/api/services/{domain}/{service}"
     return ha_request("POST", endpoint, config, payload=data)
 
