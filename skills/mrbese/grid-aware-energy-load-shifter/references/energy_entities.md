@@ -10,7 +10,9 @@ Reference for interpreting energy-related entities in Home Assistant. Read this 
 4. [Battery / Storage Sensors](#battery--storage-sensors)
 5. [Utility Meter Entities](#utility-meter-entities)
 6. [Controllable Devices](#controllable-devices)
-7. [Common HA Services for Load Control](#common-ha-services-for-load-control)
+7. [HVAC & Water Heater Entities](#hvac--water-heater-entities)
+8. [Common HA Services for Load Control](#common-ha-services-for-load-control)
+9. [Supported Integrations](#supported-integrations)
 
 ---
 

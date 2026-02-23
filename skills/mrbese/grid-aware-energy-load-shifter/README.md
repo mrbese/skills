@@ -55,5 +55,3 @@ Distributed energy resources (DER), demand-side management (DSM), time-of-use (T
 ---
 
 Built by [Omer Bese](https://linkedin.com/in/omerbese) | Energy Systems Engineer | Columbia University MS Sustainability Management
-
-Methodology informed by residential demand-side management principles, ERCOT TOU rate structures, and LADWP CLIP program energy audit experience.
